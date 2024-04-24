@@ -1,9 +1,17 @@
-import { Button } from '@/components/ui/button';
+import { ProtectForm } from '@/components/protect-form';
+import { isValidProtectPasswordInCookies } from '@/lib/protect';
+import { redirect } from 'next/navigation';
 
-export default function Home() {
+export default function RootPage() {
+  const isAuthorized = isValidProtectPasswordInCookies();
+
+  if (isAuthorized) {
+    redirect('/home');
+  }
+
   return (
     <main>
-      <Button>Click me</Button>
+      <ProtectForm />
     </main>
   );
 }

@@ -1,11 +1,11 @@
-import { ModeToggle } from '@/components/ModeToggle';
+import { ModeToggle } from '@/components/mode-toggle';
 import './globals.css';
 
-import { ThemeProvider } from '@/components/ThemeProvider';
+import { ThemeProvider } from '@/components/theme-provider';
 import { cn } from '@/lib/utils';
 import type { Metadata } from 'next';
 import { Inter as FontSans } from 'next/font/google';
-import { AppBar } from '@/components/AppBar';
+import { AppBar } from '@/components/app-bar';
 
 const fontSans = FontSans({
   subsets: ['latin'],
