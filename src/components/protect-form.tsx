@@ -1,4 +1,5 @@
 'use client';
+
 import { checkPasswordAction } from '@/app/actions/check-password';
 import { useSearchParams } from 'next/navigation';
 import { useId } from 'react';
