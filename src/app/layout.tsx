@@ -26,7 +26,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          'min-h-screen bg-background font-sans antialiased',
+          'flex flex-col min-h-screen bg-background font-sans antialiased',
           fontSans.variable
         )}
       >
@@ -37,7 +37,9 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <AppBar />
-          {children}
+          <div className="flex grow items-center justify-center">
+            {children}
+          </div>
         </ThemeProvider>
       </body>
     </html>
