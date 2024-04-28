@@ -1,7 +1,6 @@
 'use client';
 
 import { checkPasswordAction } from '@/app/actions/check-password';
-import { useSearchParams } from 'next/navigation';
 import { useId } from 'react';
 import { useFormState } from 'react-dom';
 import { ErrorMessage } from './error-message';
@@ -10,7 +9,6 @@ import { Input } from './ui/input';
 
 export const ProtectForm = () => {
   const id = useId();
-  const searchParms = useSearchParams();
   const [state, formAction] = useFormState(checkPasswordAction, undefined);
 
   return (
@@ -19,12 +17,6 @@ export const ProtectForm = () => {
         Enter password
       </h1>
       <form action={formAction} className="flex flex-col gap-4" id={id}>
-        <input
-          type="hidden"
-          id="redirect"
-          name="redirect"
-          value={searchParms.get('redirect') ?? '/home'}
-        />
         <div className="form-control w-full max-w-xs">
           <Input
             type="password"

@@ -1,16 +1,26 @@
 'use client';
 
-import { useRef } from 'react';
-import { UploadIcon, DownloadIcon } from '@radix-ui/react-icons';
-import { Input } from './ui/input';
+import { DownloadIcon, UploadIcon } from '@radix-ui/react-icons';
+import { ReactNode, useRef } from 'react';
+import { Mode } from './image-editor-form';
 import { Button } from './ui/button';
+import { Input } from './ui/input';
 
 interface Props {
-  onUpload?: (blob: string) => void;
-  onDownload?: () => void;
+  onUpload: (blob: string, name: string) => void;
+  onDownload: () => void;
+  onCrop: () => void;
+  mode: Mode;
+  children?: ReactNode;
 }
 
-export default function ActionButtons({ onUpload, onDownload }: Props) {
+export const ActionButtons = ({
+  onUpload,
+  onDownload,
+  onCrop,
+  mode,
+  children,
+}: Props) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const onUploadButtonClick = () => {
@@ -21,29 +31,50 @@ export default function ActionButtons({ onUpload, onDownload }: Props) {
     const { files } = event.target;
 
     if (files?.[0]) {
-      onUpload?.(URL.createObjectURL(files[0]));
+      const name = files[0].name;
+      onUpload?.(URL.createObjectURL(files[0]), name);
     }
 
     event.target.value = '';
   };
 
   return (
-    <div className="flex gap-2">
-      <Button variant="outline" className="gap-2">
-        <UploadIcon onClick={onUploadButtonClick} />
+    <div className="flex gap-4 w-full justify-center">
+      <Button
+        variant="outline"
+        className="gap-2"
+        type="button"
+        onClick={onUploadButtonClick}
+      >
+        <UploadIcon />
         <Input
           ref={inputRef}
+          name="image"
           type="file"
+          max={1}
           accept="image/*"
-          onChange={onLoadImage}
           className="hidden"
+          onChange={onLoadImage}
         />
         Upload
       </Button>
-      <Button variant="outline" className="gap-2">
-        <DownloadIcon onClick={onDownload} />
+
+      {mode === 'crop' && (
+        <Button type="button" variant="outline" onClick={onCrop}>
+          Crop
+        </Button>
+      )}
+
+      <Button
+        type="button"
+        variant="outline"
+        className="gap-2"
+        onClick={onDownload}
+      >
+        <DownloadIcon />
         Download
       </Button>
+      <div>{children}</div>
     </div>
   );
-}
+};

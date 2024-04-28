@@ -1,9 +1,9 @@
-import ActionButtons from '@/components/action-buttons';
+import { ImageEditorForm } from '@/components/image-editor-form';
 
 export default function Home() {
   return (
     <main>
-      <ActionButtons />
+      <ImageEditorForm />
     </main>
   );
 }
