@@ -2,12 +2,14 @@
 
 import { useFormStatus } from 'react-dom';
 import { Button } from './ui/button';
+import { MouseEventHandler } from 'react';
 
 type SubmitButtonProps = Partial<{
   loadingText: string;
   text: string;
   disabled?: boolean;
   className?: string;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
 }>;
 
 export const SubmitButton = ({
@@ -15,6 +17,7 @@ export const SubmitButton = ({
   text = 'Submit',
   disabled = false,
   className,
+  onClick,
 }: SubmitButtonProps) => {
   const { pending } = useFormStatus();
 
@@ -24,6 +27,7 @@ export const SubmitButton = ({
       aria-disabled={pending}
       className={className}
       type="submit"
+      onClick={onClick}
     >
       {pending ? (
         <>

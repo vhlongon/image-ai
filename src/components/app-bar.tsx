@@ -1,12 +1,4 @@
-import {
-  Menubar,
-  MenubarContent,
-  MenubarItem,
-  MenubarMenu,
-  MenubarSeparator,
-  MenubarShortcut,
-  MenubarTrigger,
-} from '@/components/ui/menubar';
+import { Menubar, MenubarMenu } from '@/components/ui/menubar';
 import { ModeToggle } from './mode-toggle';
 
 export const AppBar = () => (
@@ -14,7 +6,7 @@ export const AppBar = () => (
     <MenubarMenu>
       <ModeToggle />
     </MenubarMenu>
-    <MenubarMenu>
+    {/* <MenubarMenu>
       <MenubarTrigger>File</MenubarTrigger>
       <MenubarContent>
         <MenubarItem>
@@ -26,6 +18,6 @@ export const AppBar = () => (
         <MenubarSeparator />
         <MenubarItem>Print</MenubarItem>
       </MenubarContent>
-    </MenubarMenu>
+    </MenubarMenu> */}
   </Menubar>
 );
