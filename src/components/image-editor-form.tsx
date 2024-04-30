@@ -87,8 +87,6 @@ export const ImageEditorForm = () => {
     formData.append('prompt', prompt);
     formData.append('response_format', 'b64_json');
 
-    // add the formData to form
-
     try {
       setIsLoading(true);
       const response = await fetch('/images/edit', {
