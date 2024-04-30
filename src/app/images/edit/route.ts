@@ -10,6 +10,8 @@ export const POST = async (request: Request, res: Response) => {
   const prompt = formData.get('prompt') as string;
   const mask = formData.get('mask') as File;
 
+  console.log('🚀 ~ process.env.OPEN_AI_KEY:', process.env.OPEN_AI_KEY);
+
   try {
     const response = await openai.images.edit({
       model: 'dall-e-2',
@@ -25,6 +27,7 @@ export const POST = async (request: Request, res: Response) => {
 
     return Response.json({ error: null, image: editImage }, { status: 200 });
   } catch (error) {
+    console.log('🚀 ~ error:', error);
     const errorMessage =
       error instanceof Error
         ? error.message
