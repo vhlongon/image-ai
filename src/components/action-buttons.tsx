@@ -5,6 +5,7 @@ import { ChangeEvent, ReactNode, useRef, useState } from 'react';
 import { Mode } from './image-editor-form';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
+import { LoadingSpinner } from './ui/loading-spinner';
 
 interface Props {
   children?: ReactNode;
@@ -92,7 +93,14 @@ export const ActionButtons = ({
               onGenerate(prompt);
             }}
           >
-            {isLoading ? 'generating...' : 'Generate'}
+            {isLoading ? (
+              <span className="flex gap-1 items-center">
+                <LoadingSpinner className="w-4 h-4" />
+                generating
+              </span>
+            ) : (
+              'Generate'
+            )}
           </Button>
         </div>
       )}

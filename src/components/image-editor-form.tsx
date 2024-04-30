@@ -19,6 +19,7 @@ import {
 import 'react-advanced-cropper/dist/style.css';
 import { ActionButtons } from './action-buttons';
 import { ImageSelector } from './image-selector';
+import { LoadingSpinner } from './ui/loading-spinner';
 
 export type Mode = 'crop' | 'select' | 'iddle' | 'generate';
 export type Image = { src: string; name: string };
@@ -129,8 +130,11 @@ export const ImageEditorForm = () => {
           <div className="h-[600px] relative">
             {isLoading && (
               <div className="z-10 absolute brightness-50 opacity-80 bg-black lef-0 top-0 w-full h-full">
-                <div className="flex justify-center items-center w-full h-full">
-                  <p className="text-lg text-white">Generating edit...</p>
+                <div className="flex flex-col justify-center gap-2 items-center w-full h-full">
+                  <p className="text-lg text-white">
+                    Creating something interesting...
+                  </p>
+                  <LoadingSpinner className="w-8 h-8" />
                 </div>
               </div>
             )}
