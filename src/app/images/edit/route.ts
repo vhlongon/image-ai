@@ -1,5 +1,9 @@
 import OpenAI from 'openai';
 
+export const dynamic = 'force-dynamic';
+export const runtime = 'edge';
+export const maxDuration = 30;
+
 const openai = new OpenAI({
   apiKey: process.env.OPEN_AI_KEY,
 });
